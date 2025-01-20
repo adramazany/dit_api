@@ -61,7 +61,8 @@ class PartyList(Resource):
         party = PartyModel(**data)
         try:
             party.save_to_db()
-        except SQLAlchemyError:
+        except SQLAlchemyError as e:
+            print(e)
             return {"message": "An error occurred creating the party."}, 500
 
         return party.json(), 201

@@ -69,4 +69,4 @@ class StorePositionList(Resource):
         pageSize = int(request.headers.get("pageSize","10"))
         orderBy = request.headers.get("orderBy","")
         print(data, page, pageSize, orderBy)
-        return {"partstores": [partstore.json() for partstore in PartstoreModel.find_filter_by(page=page, pageSize=pageSize, orderBy=orderBy, **data)]}
+        return {"storepositions": [storeposition.json() for storeposition in StorePositionModel.find_filter_by(page=page, pageSize=pageSize, orderBy=orderBy, **data)]}

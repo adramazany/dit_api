@@ -26,8 +26,12 @@ class Part(Resource):
         part = PartModel(Name=name, **data)
         try:
             part.save_to_db()
-        except SQLAlchemyError:
+        except SQLAlchemyError as e:
+            print(e)
             return {"message": "An error occurred creating the part."}, 500
+        except exception as e:
+            print(e)
+            return {"message": e.message}, 500
 
         return part.json(), 201
 

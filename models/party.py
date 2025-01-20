@@ -19,13 +19,17 @@ class PartyModel(db.Model):
     Nationality = db.Column(db.String(20), nullable=True)
     Mobile = db.Column(db.String(20), nullable=True)
     Email = db.Column(db.String(50), nullable=True)
-    BirthDate = db.Column(db.DateTime, nullable=True)
+    #BirthDate = db.Column(db.DateTime, nullable=True)
+    BirthDate = db.Column(db.String(100), nullable=True)
     EducationDegree = db.Column(db.Integer, nullable=True)
-    MarriageDate = db.Column(db.DateTime, nullable=True)
-    Creator = db.Column(db.Integer, nullable=False)
-    CreationDate = db.Column(db.DateTime, nullable=False, default=datetime.utcnow())
-    LastModifier = db.Column(db.Integer, nullable=False)
-    LastModificationDate = db.Column(db.DateTime, nullable=False, onupdate=datetime.utcnow())
+    #MarriageDate = db.Column(db.DateTime, nullable=True)
+    MarriageDate = db.Column(db.String(100), nullable=True)
+    Creator = db.Column(db.String(100), nullable=False, default='Admin')
+    #CreationDate = db.Column(db.DateTime, nullable=False, default=datetime.utcnow())
+    CreationDate = db.Column(db.String(100), nullable=False, default=datetime.utcnow())
+    LastModifier = db.Column(db.String(100), nullable=False, default='Admin')
+    #LastModificationDate = db.Column(db.DateTime, nullable=False, onupdate=datetime.utcnow())
+    LastModificationDate = db.Column(db.String(100), nullable=False, default=datetime.utcnow(), onupdate=datetime.utcnow())
 
     def json(self):
         return {

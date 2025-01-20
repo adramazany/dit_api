@@ -26,7 +26,8 @@ class User(Resource):
         user = UserModel(Name=name, **data)
         try:
             user.save_to_db()
-        except SQLAlchemyError:
+        except SQLAlchemyError as e:
+            print(e)
             return {"message": "An error occurred creating the user."}, 500
 
         return user.json(), 201

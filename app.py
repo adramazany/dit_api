@@ -5,8 +5,15 @@ from flask_restful import Api
 from db import db
 from resources import *
 
+from flask_cors import CORS  # Import CORS
+
 
 app = Flask(__name__)
+
+# Configure CORS to allow all origins by default
+CORS(app)
+# CORS(app, origins=["http://localhost", "http://localhost:3000"])
+
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///data.db"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 app.config["PROPAGATE_EXCEPTIONS"] = True

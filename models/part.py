@@ -16,10 +16,12 @@ class PartModel(db.Model):
     CategoryRef = db.Column(db.Integer, nullable=True)
     QRCode = db.Column(db.String(256), nullable=True)
     Quantity = db.Column(db.Integer, nullable=True)
-    Creator = db.Column(db.Integer, nullable=False)
-    CreationDate = db.Column(db.DateTime, nullable=False, default=datetime.utcnow())
-    LastModifier = db.Column(db.Integer, nullable=False)
-    LastModificationDate = db.Column(db.DateTime, nullable=False, onupdate=datetime.utcnow())
+    Creator = db.Column(db.Integer, nullable=False, default='Admin')
+    #CreationDate = db.Column(db.DateTime, nullable=False, default=datetime.utcnow()) # TypeError: Object of type datetime is not JSON serializable
+    CreationDate = db.Column(db.String(100), nullable=False, default=datetime.utcnow())
+    LastModifier = db.Column(db.String(100), nullable=False, default='Admin')
+    #LastModificationDate = db.Column(db.DateTime, nullable=False, default=datetime.utcnow(), onupdate=datetime.utcnow())
+    LastModificationDate = db.Column(db.String(100), nullable=False, default=datetime.utcnow(), onupdate=datetime.utcnow())
 
     def json(self):
         return {

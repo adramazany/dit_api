@@ -13,13 +13,16 @@ class UserModel(db.Model):
     Name = db.Column(db.String(50), unique=True, nullable=False)
     Status = db.Column(db.Integer, nullable=False)
     PartyRef = db.Column(db.Integer, nullable=True)
-    IsAdministrator = db.Column(db.Boolean, nullable=True)
+    IsAdministrator = db.Column(db.Integer, nullable=True)
     Password = db.Column(db.String(50), nullable=True)
-    LastPasswordUpdate = db.Column(db.DateTime, nullable=False)
-    Creator = db.Column(db.Integer, nullable=False)
-    CreationDate = db.Column(db.DateTime, nullable=False, default=datetime.utcnow())
-    LastModifier = db.Column(db.Integer, nullable=False)
-    LastModificationDate = db.Column(db.DateTime, nullable=False, onupdate=datetime.utcnow())
+    #LastPasswordUpdate = db.Column(db.DateTime, nullable=False)
+    LastPasswordUpdate = db.Column(db.String(100), nullable=False)
+    Creator = db.Column(db.String(100), nullable=False, default='Admin')
+    #CreationDate = db.Column(db.DateTime, nullable=False, default=datetime.utcnow())
+    CreationDate = db.Column(db.String(100), nullable=False, default=datetime.utcnow())
+    LastModifier = db.Column(db.String(100), nullable=False, default='Admin')
+    #LastModificationDate = db.Column(db.DateTime, nullable=False, onupdate=datetime.utcnow())
+    LastModificationDate = db.Column(db.String(100), nullable=False, default=datetime.utcnow(), onupdate=datetime.utcnow())
 
     def json(self):
         return {
